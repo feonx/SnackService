@@ -33,6 +33,8 @@ namespace SnackService.Controllers
         [HttpGet("{username}")]
         public string Get(string username)
         {
+            if (username == null) return null;
+
             var user = new Register(_authenticationContext, new RegisterContext
             {
                 username = username
@@ -54,8 +56,10 @@ namespace SnackService.Controllers
 
         // POST api/register
         [HttpPost]
-        public string Post([FromBody]string username, string password)
+        public string Post(string username, string password)
         {
+            if (username == null || password == null) return null;
+
             var newUser = new Register(_authenticationContext, new RegisterContext
             {
                 username = username
