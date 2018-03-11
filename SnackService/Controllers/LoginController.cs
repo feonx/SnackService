@@ -7,20 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace SnackService.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class LoginController : Controller
     {
-        // GET api/values
+        // GET api/users
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            throw new NotImplementedException();
         }
 
-        // GET api/values/5
+        // GET api/user/id
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return $"get user by id: {id}";
         }
 
         // POST api/values
@@ -29,13 +29,13 @@ namespace SnackService.Controllers
         {
         }
 
-        // PUT api/values/5
+        // PUT api/user/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/user/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
