@@ -30,8 +30,9 @@ namespace SnackService.Controllers
         }
 
         // GET api/register/mike
-        [HttpGet("{username}")]
-        public string Get(string username)
+        [HttpPost]
+        [Route("userexists")]
+        public string UserExists(string username)
         {
             if (username == null) return null;
 
@@ -56,7 +57,7 @@ namespace SnackService.Controllers
 
         // POST api/register
         [HttpPost]
-        public string Post(string username, string password)
+        public string Register(string username, string password)
         {
             if (username == null || password == null) return null;
 

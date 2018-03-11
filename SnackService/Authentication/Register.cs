@@ -29,7 +29,7 @@ namespace SnackService.Authentication
 
         public void CreateNewUser(string password)
         {
-            var login = _authenticationContext.Logins.Add(new Login
+            var login = _authenticationContext.Logins.Add(new Models.Login
             {
                 Username = _registerContext.username,
                 Password = password,
