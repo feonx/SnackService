@@ -1,4 +1,5 @@
-﻿using SnackService.Models;
+﻿using Newtonsoft.Json;
+using SnackService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace SnackService.Authentication
 {
     public class RegisterContext
     {
+        [JsonProperty("username")]
         public string username { get; set; }
     }
 

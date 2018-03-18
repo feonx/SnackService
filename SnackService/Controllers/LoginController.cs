@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SnackService.Models;
 using SnackService.Responses;
 using Newtonsoft.Json;
+using SnackService.Authentication;
 
 namespace SnackService.Controllers
 {
@@ -29,17 +30,17 @@ namespace SnackService.Controllers
         // GET api/login/username
         [HttpPost]
         [Route("getuser")]
-        public string GetUser(string username, string password)
+        public string GetUser([FromBody] LoginContext loginContext)
         {
-            if (username == null || password == null) return null;
+            //if (username == null || password == null) return null;
 
             var login = new Authentication.Login(_authenticationContext);
 
-            var loginContext = new Authentication.LoginContext
-            {
-                username = username,
-                password = password
-            };
+            //var loginContext = new Authentication.LoginContext
+            //{
+            //    username = username,
+            //    password = password
+            //};
 
             var existingUser = login.GetUser(loginContext);
 
@@ -48,17 +49,9 @@ namespace SnackService.Controllers
 
         // POST api/login
         [HttpPost]
-        public string Login(string username, string password)
+        public string Login([FromBody] LoginContext loginContext)
         {
-            if (username == null || password == null) return null;
-
             var login = new Authentication.Login(_authenticationContext);
-
-            var loginContext = new Authentication.LoginContext
-            {
-                username = username,
-                password = password
-            };
 
             var confirmationResponse = new Confirmation();
 

@@ -32,14 +32,9 @@ namespace SnackService.Controllers
         // GET api/register/mike
         [HttpPost]
         [Route("userexists")]
-        public string UserExists(string username)
+        public string UserExists(RegisterContext registerContext)
         {
-            if (username == null) return null;
-
-            var user = new Register(_authenticationContext, new RegisterContext
-            {
-                username = username
-            });
+            var user = new Register(_authenticationContext, registerContext);
 
             var confirmationResponse = new Confirmation();
 
@@ -57,20 +52,18 @@ namespace SnackService.Controllers
 
         // POST api/register
         [HttpPost]
-        public string Register(string username, string password)
+        public string Register(LoginContext loginContext)
         {
-            if (username == null || password == null) return null;
-
             var newUser = new Register(_authenticationContext, new RegisterContext
             {
-                username = username
+                username = loginContext.username
             });
 
             var confirmationResponse = new Confirmation();
 
             if (!newUser.UserExists())
             {
-                newUser.CreateNewUser(password);
+                newUser.CreateNewUser(loginContext.password);
                 confirmationResponse.Status = StatusEnum.RecordCreated;
             }
             else

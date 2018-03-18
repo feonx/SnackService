@@ -1,4 +1,5 @@
-﻿using SnackService.Models;
+﻿using Newtonsoft.Json;
+using SnackService.Models;
 using SnackService.Responses;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,10 @@ namespace SnackService.Authentication
 {
     public class LoginContext
     {
+        [JsonProperty("username")]
         public string username { get; set; }
+
+        [JsonProperty("password")]
         public string password { get; set; }
     }
 
